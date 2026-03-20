@@ -1,6 +1,6 @@
 .introduction {
   width: 100%;
-  height: 600px;
+  /* height: 100vh; */
 }
 
 .introduction_top {
@@ -28,6 +28,11 @@
 
 .middle_color {
   color: #6a784d;
+}
+
+.no_style_link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .introduction_bottom {
@@ -59,7 +64,7 @@
 
 .business {
   width: 100%;
-  height: 600px;
+  margin-top: 190px;
 }
 
 .business_title {
@@ -76,4 +81,327 @@
   color: #888;
   font-size: 16px;
   margin-top: 0;
+}
+
+.business_box {
+  width: 1100px;
+  border: 1px solid #d9d9d9;
+  margin: 54px auto 28px;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.business_box_inner {
+  padding: 40px 40px;
+}
+
+.business_box p {
+  font-weight: bold;
+  color: #444;
+  font-size: 20px;
+  margin: 10px 0 20px;
+}
+.business_search {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.business_search .business_search_input {
+  width: 860px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #bebebe;
+  margin-right: 12px;
+  padding-left: 10px;
+  color: #bebebe;
+}
+
+.business_search button {
+  width: 150px;
+  height: 44px;
+  background-color: #6a784d;
+  color: #fff;
+  border: 1px;
+  border-radius: 10px;
+}
+
+.business_box_inner span {
+  color: #bebebe;
+  font-size: 14px;
+}
+
+.business_result {
+  width: 1100px;
+  margin: 30px auto 0;
+  border: 1px solid #d9d9d9;
+  border-radius: 20px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.business_result_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #ececec;
+}
+
+.business_result_title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.business_result_title span {
+  font-size: 18px;
+  font-weight: 700;
+  color: #222;
+}
+
+.result_icon {
+  width: 18px;
+  height: 18px;
+  color: #666;
+}
+
+.result_status_top {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #d8e6cb;
+  background-color: #f4f8ef;
+  color: #6a784d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.business_result_body {
+  display: flex;
+  flex-direction: column;
+}
+
+.result_row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  align-items: center;
+  min-height: 56px;
+  padding: 0 24px;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.result_row:last-child {
+  border-bottom: none;
+}
+
+.result_label {
+  font-size: 15px;
+  color: #666;
+  font-weight: 500;
+}
+
+.result_value {
+  font-size: 15px;
+  color: #222;
+  font-weight: 500;
+}
+
+.result_badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #d8e6cb;
+  background-color: #f4f8ef;
+  color: #6a784d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.business_result_notice {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 24px 18px;
+  border-top: 1px solid #ececec;
+  background-color: #fcfcfc;
+}
+
+.notice_icon {
+  width: 14px;
+  height: 14px;
+  color: #aaa;
+  flex-shrink: 0;
+}
+
+.business_result_notice span {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #888;
+}
+
+.book {
+  width: 1100px;
+  margin: 190px auto 0;
+}
+
+.book_title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.book_title h2 {
+  font-size: 30px;
+  margin-bottom: 16px;
+}
+
+.book_title p {
+  font-size: 16px;
+  color: #888;
+}
+
+.book_box {
+  border: 1px solid #d9d9d9;
+  border-radius: 20px;
+  padding: 28px 32px;
+  background: #fff;
+}
+
+.book_search {
+  height: 48px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.book_search .Search {
+  width: 14px;
+  height: 14px;
+  color: #bebebe;
+}
+
+.book_search span {
+  font-size: 14px;
+  color: #bebebe;
+  margin-left: 6px;
+}
+
+.book_button {
+  margin-top: 18px;
+  display: flex;
+  gap: 8px;
+}
+
+.book_button button {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.book_button button:hover {
+  background: #6a784d;
+  color: #fff;
+}
+
+.book_result {
+  margin-top: 40px;
+}
+
+.book_result p {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.book_result span {
+  color: #6a784d;
+}
+
+/* 핵심 */
+.book_slider_outer {
+  width: calc(1100px + 96px); /* 카드 1100 + 화살표 영역 */
+  margin-left: -48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 카드 영역은 1100 고정 */
+.book_slider {
+  width: 1100px;
+  overflow: hidden;
+}
+
+/* 보이는 창 */
+.slider_view {
+  width: 1100px;
+  overflow: hidden;
+}
+
+/* 카드 줄 */
+.history {
+  display: flex;
+  gap: 20px;
+}
+
+/* 카드 4개 + gap 3개 = 1100 맞춤 */
+.history_box {
+  width: 260px;
+  min-width: 260px;
+  /* height: 340px; */
+  border-radius: 16px;
+  border: 1px solid #e5e5e5;
+  flex-shrink: 0;
+  padding: 12px;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.history_box_img {
+  width: 100%;
+  height: 200px;
+  background: #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.history_box_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* background-color: #f5f5f5; */
+}
+
+/* 화살표 */
+.arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.arrow:hover {
+  background: #6a784d;
+  color: #fff;
 }

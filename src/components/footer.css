@@ -1,0 +1,19 @@
+.footer {
+  height: 100px;
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  /* background-color: #6a784d; */
+  border-top: 1px solid #6a784d;
+  /* border-radius: 20px 20px 0 0; */
+  margin-top: 200px;
+}
+
+.footer p {
+  color: #6a784d;
+  text-align: center;
+  font-size: 12px;
+  margin: 0 auto;
+}

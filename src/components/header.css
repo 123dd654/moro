@@ -3,6 +3,14 @@ body {
 }
 
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f6f6f6;
+}
+
+.header_inner {
   height: 50px;
   width: 1200px;
   display: flex;
@@ -22,10 +30,49 @@ body {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.Header_right li {
+  text-decoration: none;
+  color: inherit;
   list-style: none;
   font-size: 14px;
+}
+
+.menu_item {
+  cursor: pointer;
+}
+
+.menu_link {
   color: #444;
+  text-decoration: none;
+}
+
+.Impossible_item {
+  position: relative;
+  cursor: pointer;
+  color: #bebebe;
+}
+
+/* 툴팁 */
+.tooltip_text {
+  position: absolute;
+  top: 120%; /* 아래로 */
+  left: 50%;
+  transform: translateX(-50%);
+
+  background-color: #bebebe;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+/* hover 시 나타남 */
+.Impossible_item:hover .tooltip_text {
+  opacity: 1;
+  transform: translateX(-50%) translateY(4px);
 }
