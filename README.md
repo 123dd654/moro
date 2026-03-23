@@ -1,16 +1,38 @@
-# React + Vite
+# MORO
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+세무사사무실에서 근무하며, 실수령액을 역으로 계산할 수 있는 기능이 있으면 좋겠다고 느낀 경험에서 시작한 프로젝트입니다.  
+또한 평소 세무 관련 질문을 잘 받아주는 사람들과 오픈채팅처럼 편하게 소통할 수 있는 공간을 떠올리며 개발하고 있습니다.
 
-Currently, two official plugins are available:
+## 🛠 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React
+- JavaScript
+- CSS
 
-## React Compiler
+## 📌 Description
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+사용자의 입력값을 기반으로 실질적인 계산 결과를 제공하는 기능 구현에 집중했습니다.  
+단순 UI 구현이 아닌, 입력 → 계산 → 결과 출력까지의 흐름을 고려하여 개발하고 있습니다.
 
-## Expanding the ESLint configuration
+## 🚀 Key Features (구현 예정 기능)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 실수령액 역계산
+- 4대보험 계산
+- 주휴수당 계산
+- 사업자등록 조회
+- 도서 추천 및 도서 검색
+
+## 🧩 What I did
+
+- 사용자 입력값을 기반으로 계산 결과를 도출하는 로직 구현
+- state를 활용하여 입력값과 결과 데이터를 연결
+- 컴포넌트 단위로 기능을 분리하여 재사용성과 유지보수성 고려
+
+## 📚 What I learned
+
+기능을 직접 구현하면서 데이터 흐름과 상태 관리의 중요성을 이해하게 되었습니다.  
+단순한 화면 구현이 아닌, 실제로 동작하는 서비스를 만드는 과정에 집중하고 있습니다.
+
+## 🚧 Status
+
+현재 기능 중심으로 개발을 진행하며 지속적으로 개선 중입니다.
