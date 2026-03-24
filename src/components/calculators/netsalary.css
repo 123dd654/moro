@@ -1,0 +1,196 @@
+.netsalary {
+  width: 100%;
+}
+
+.netsalary_title {
+  text-align: center;
+  margin: 50px;
+}
+
+.netsalary_title h2 {
+  color: #222;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.netsalary_title p {
+  color: #888;
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.netsalary_input_box {
+  width: 1000px;
+  margin: 0 auto;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.input_box_inner {
+  padding: 36px 40px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input_box_inner p {
+  margin: 0;
+  font-size: 15px;
+  color: #222;
+  font-weight: 700;
+}
+
+.input_box_inner input {
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #bebebe;
+  padding-left: 10px;
+  color: #bebebe;
+}
+
+.input_box_inner span {
+  color: #888;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.input_box_inner button {
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #6a784d;
+  background-color: #6a784d;
+  color: #fff;
+  font-size: 16px;
+}
+
+.netsalary_result {
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 30px;
+  border: 1px solid #6a784d;
+  background-color: #6a784d;
+  color: #fff;
+  /* padding: 30px 40px; */
+  border-radius: 20px;
+}
+
+.netsalary_result_inner {
+  padding: 30px 40px;
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.netsalary_result p {
+  margin: 0;
+  color: #e3e3e3;
+  font-size: 14px;
+}
+
+.netsalary_result h1 {
+  margin: 0;
+}
+
+.netsalary_result span {
+  margin: 0;
+  color: #e3e3e3;
+  font-size: 14px;
+}
+
+.netsalary_deduction {
+  width: 1000px;
+  margin: 16px auto 0;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.deduction_title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 18px 30px;
+  border-bottom: 1px solid #ececec;
+  background-color: #fcfcfc;
+}
+
+.deduction_title span {
+  font-size: 16px;
+  font-weight: 700;
+  color: #222;
+}
+
+.receipt_icon {
+  width: 16px;
+  height: 16px;
+  color: #666;
+}
+
+.deduction_item,
+.deduction_total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 56px;
+  border-bottom: 1px solid #f3f3f3;
+  padding: 0 30px;
+}
+
+.deduction_left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.deduction_name {
+  color: #222;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.deduction_rate {
+  color: #999;
+  font-size: 13px;
+}
+
+.deduction_value {
+  color: #222;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.deduction_total {
+  font-weight: 700;
+  border-bottom: none;
+  background: #fafaf7;
+}
+
+.netsalary_result_notice {
+  width: 1000px;
+  border-radius: 20px;
+  border: 1px solid #ececec;
+  background-color: #ececec;
+  margin: 10px auto;
+}
+
+.notice_inner {
+  padding: 18px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #666;
+}
+
+.notice_inner p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.check_point_icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+  color: #6a784d;
+}

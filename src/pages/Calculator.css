@@ -1,0 +1,21 @@
+.calculator {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.calculator_btn button {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button.active {
+  border: 1px solid #6a784d;
+  background: #6a784d;
+  color: #fff;
+}

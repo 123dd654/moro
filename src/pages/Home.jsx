@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import {
@@ -6,10 +7,26 @@ import {
   Info,
   ChevronLeft,
   ChevronRight,
+  ArrowRight,
+  ChevronsDown,
 } from "lucide-react";
 import { booksDummy } from "../data/booksDummy";
 
 const Home = () => {
+  const [index, setIndex] = useState(0);
+
+  const cardWidth = 280; // 카드 260 + gap 20
+  const visibleCount = 4;
+  const maxIndex = Math.max(0, booksDummy.length - visibleCount);
+
+  const handlePrev = () => {
+    setIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  const handleNext = () => {
+    setIndex((prev) => Math.min(prev + 1, maxIndex));
+  };
+
   const businessData = {
     companyName: "-",
     ceoName: "-",
@@ -41,12 +58,17 @@ const Home = () => {
       {/* 소개 */}
       <div className="introduction">
         <h1 className="introduction_top">
-          <span className="top_color">MORO</span>가 당신만을 위한
+          <span className="top_color">
+            MOR
+            <img src="/logo2.svg" width={28} />
+          </span>
+          가 당신만을 위한
           <br />
           똑똑한 가이드가
           <br />
           되어드릴게요!
         </h1>
+
         <p className="introduction_middle">
           <span className="middle_color">
             실수령액 역계산 · 4대보험 · 주휴수당
@@ -61,6 +83,10 @@ const Home = () => {
             <button className="main_btn">계산기 시작하기</button>
           </div>
         </Link>
+        <div className="scroll">
+          <p>SCROLL</p>
+          <ChevronsDown className="scroll_icon" />
+        </div>
       </div>
 
       {/* 아래 섹션 */}
@@ -132,40 +158,57 @@ const Home = () => {
           </div>
 
           <div className="book_button">
-            <button>전체</button>
+            <button className="check">전체</button>
             <button>종합소득세</button>
             <button>법인세</button>
             <button>부가가치세</button>
             <button>4대보험</button>
-            <button>재무회계</button>
+            <button>자격증</button>
           </div>
         </div>
 
         <div className="book_result">
           <p>
-            <span>'종합소득세'</span> 검색결과 총 <span>3</span>건
+            <span>'전체'</span> 검색결과 총 <span>{booksDummy.length}</span>건
           </p>
 
           <div className="book_slider_outer">
-            <button className="arrow left" type="button">
+            <button className="arrow left" type="button" onClick={handlePrev}>
               <ChevronLeft size={20} />
             </button>
 
             <div className="book_slider">
               <div className="slider_view">
-                <div className="history">
+                <div
+                  className="slider_track"
+                  style={{ transform: `translateX(-${index * cardWidth}px)` }}
+                >
                   {booksDummy.map((book) => (
-                    <div className="history_box" key={book.id}>
+                    <div className="history" key={book.id}>
                       <div className="history_box_img">
-                        <img src={book.image} />
+                        <div className="category">{book.category}</div>
+                        <div className="imgbox">
+                          <img src={book.image} alt={book.title} />
+                        </div>
                       </div>
 
                       <div className="history_box_detail">
                         <h3>{book.title}</h3>
-                        <p>
+                        <p className="author">
                           {book.author} · {book.publisher}
                         </p>
-                        <span>{book.price}</span>
+                        <p className="description">{book.description}</p>
+                        <div className="pricing_and_links">
+                          <span>{book.price}</span>
+                          <a
+                            href={book.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="link_btn"
+                          >
+                            <ArrowRight size={16} />
+                          </a>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -173,7 +216,7 @@ const Home = () => {
               </div>
             </div>
 
-            <button className="arrow right" type="button">
+            <button className="arrow right" type="button" onClick={handleNext}>
               <ChevronRight size={20} />
             </button>
           </div>
