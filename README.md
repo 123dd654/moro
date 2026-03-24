@@ -4,6 +4,7 @@
 또한 평소 세무 관련 질문을 잘 받아주는 사람들과 오픈채팅처럼 편하게 소통할 수 있는 공간을 떠올리며 개발하고 있습니다.
 
 ## [메인화면 이미지]
+
 <img width="1920" height="3006" alt="Image" src="https://github.com/user-attachments/assets/7bf57b0f-25df-41fe-a9fd-6b6533688cdd" />
 
 ## 🛠 Tech Stack
