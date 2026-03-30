@@ -1,0 +1,166 @@
+.insurance {
+  width: 100%;
+}
+
+.insurance_title {
+  text-align: center;
+  margin: 50px;
+}
+
+.insurance_title h2 {
+  color: #222;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.insurance_title p {
+  color: #888;
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.insurance_input_box {
+  width: 1000px;
+  margin: 0 auto;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.insurance_input_box_inner {
+  padding: 36px 40px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.insurance_input_box_inner p {
+  margin: 0;
+  font-size: 15px;
+  color: #222;
+  font-weight: 700;
+}
+
+.insurance_input_box_inner p span {
+  font-size: 12px;
+  margin-left: 5px;
+  color: #666;
+}
+
+.input_box {
+  display: flex;
+  gap: 10px;
+}
+
+.input_box input {
+  width: 80%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #bebebe;
+  padding-left: 10px;
+  color: #bebebe;
+  box-sizing: border-box;
+}
+
+.input_box button {
+  width: 20%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #6a784d;
+  background-color: #6a784d;
+  color: #fff;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.input_select {
+  margin-top: 16px;
+  padding: 20px 0 0 0;
+  border-top: 1px solid #bebebe;
+}
+
+.input_select_inner {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.non_taxable {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.non_taxable_icon {
+  cursor: pointer;
+}
+
+.non_taxable_icon:hover + .tooltip_box,
+.tooltip_box:hover {
+  display: block;
+}
+
+.tooltip_box {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 10%;
+  transform: translateX(-50%);
+  width: 320px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #666;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+}
+
+.tooltip_box p {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.tooltip_box p:last-child {
+  margin-bottom: 0;
+}
+
+.tooltip_box ul {
+  margin: 4px 0 0;
+  padding-left: 16px;
+}
+
+.tooltip_box ul li {
+  margin-bottom: 4px;
+}
+
+.non_taxable {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.non_taxable span {
+  font-size: 14px;
+  color: #666;
+}
+
+.non_taxable_icon {
+  width: 14px;
+  height: 14px;
+  color: #666;
+}
+
+.input_select_inner input {
+  width: 180px;
+  height: 36px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 1px solid #bebebe;
+  padding-left: 10px;
+  color: #bebebe;
+}

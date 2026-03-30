@@ -138,6 +138,10 @@
   padding: 0 30px;
 }
 
+.deduction_total span:last-child {
+  color: red;
+}
+
 .deduction_left {
   display: flex;
   align-items: center;
@@ -165,6 +169,64 @@
   font-weight: 700;
   border-bottom: none;
   background: #fafaf7;
+}
+
+.netsalary_summation {
+  width: 1000px;
+  margin: 16px auto 0;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.netsalary_summation p {
+  font-weight: 500;
+  padding: 18px 30px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.summation_Before {
+  color: #222;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
+  /* min-height: 30px; */
+  text-align: center;
+}
+
+.summation_total {
+  color: #222;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
+  /* min-height: 30px; */
+  margin-bottom: 10px;
+}
+
+.summation_total span:last-child {
+  color: red;
+}
+
+.summation_netsalary {
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+  /* min-height: 30px; */
+  margin: 0;
+  font-weight: 600;
+  background: #fafaf7;
+  border-top: 1px solid #f3f3f3;
+  border-radius: 0 0 20px 20px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.summation_netsalary span:last-child {
+  color: #6a784d;
 }
 
 .netsalary_result_notice {

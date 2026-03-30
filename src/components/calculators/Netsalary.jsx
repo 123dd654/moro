@@ -44,7 +44,7 @@ const Netsalary = () => {
       <div className="netsalary_input_box">
         <div className="input_box_inner">
           <p>실수령액 (세후)</p>
-          <input type="text" value="2,500,000" />
+          <input type="text" defaultValue="2,500,000" />
           <span>입력값 : 2,500,000원</span>
           <button className="calculate_btn">세전 급여 계산하기</button>
         </div>
@@ -75,9 +75,25 @@ const Netsalary = () => {
           ))}
           <div className="deduction_total">
             <span>총 공제액</span>
-            {/* <span>- {totalDeduction.toLocaleString()}원</span> */}-
-            504,347원
+            <span>- 504,347원</span>
           </div>
+        </div>
+      </div>
+      <div className="netsalary_summation">
+        <p>계산 요약</p>
+        <div>
+          <div className="summation_Before">
+            <span>세전 급여</span>
+            <span>3,004,348원</span>
+          </div>
+          <div className="summation_total">
+            <span>총 공제액</span>
+            <span>-504,347</span>
+          </div>
+        </div>
+        <div className="summation_netsalary">
+          <span>실수령액</span>
+          <span>2,500,001원</span>
         </div>
       </div>
       <div className="netsalary_result_notice">
