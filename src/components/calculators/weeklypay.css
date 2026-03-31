@@ -1,0 +1,220 @@
+.weeklypay {
+  width: 100%;
+}
+
+.weeklypay_title {
+  text-align: center;
+  margin: 50px;
+}
+
+.weeklypay_title h2 {
+  color: #222;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.weeklypay_title p {
+  color: #888;
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.weeklypay_input {
+  width: 1000px;
+  margin: 0 auto;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.weekly_time,
+.money {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.weekly_time {
+  padding: 30px 30px 16px;
+}
+
+.money {
+  padding: 0px 30px 20px;
+}
+
+.weekly_time p,
+.money p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+}
+
+.weekly_time_input,
+.money_input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 0 12px;
+}
+
+.weekly_time_input input,
+.money_input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  height: 38px;
+}
+
+.weekly_time_input span,
+.money_input span {
+  color: #888;
+  font-size: 14px;
+}
+
+.weeklypay_btn {
+  /* width: 100%; */
+  padding: 20px 30px 20px;
+  /* margin: 0 auto; */
+}
+
+.weeklypay_btn button {
+  height: 48px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #6a784d;
+  background-color: #6a784d;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.answer,
+.fail {
+  width: 1000px;
+  margin: 10px auto;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.answer_inner,
+.fail_inner {
+  padding: 24px 30px;
+  display: flex;
+  /* align-items: center; */
+}
+
+.answer_inner {
+  background-color: #f4f6f1;
+}
+
+.fail_inner {
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity, 1));
+}
+
+.answer_inner_p p,
+.fail_inner_p p {
+  margin: 0px 0px 6px 10px;
+  font-weight: 500;
+}
+
+.answer_inner_p span,
+.fail_inner_p span {
+  margin: 0;
+  margin-left: 10px;
+  font-size: 14px;
+  color: #444;
+}
+
+.calculate,
+.final_result,
+.calculate_notice {
+  width: 1000px;
+  margin: 6px auto;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 16px;
+}
+
+.calculate_inner {
+  padding: 14px 30px;
+}
+
+.calculate h3 {
+  padding: 12px 0px;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.calculate_hour,
+.calculate_result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.calculate_hour p,
+.calculate_result p {
+  color: #444;
+  font-size: 14px;
+  margin: 0;
+}
+
+.calculate_hour span,
+.calculate_result span {
+  color: #222;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.final_result_inner {
+  padding: 14px 30px;
+}
+
+.week_money,
+.month_money {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+
+.week_money {
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.week_money p,
+.month_money p {
+  color: #222;
+  font-size: 14px;
+  margin: 0;
+}
+
+.week_money span,
+.month_money span {
+  color: #6a784d;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.calculate_notice {
+  overflow: hidden;
+}
+
+.calculate_notice_inner {
+  padding: 20px 30px;
+  display: flex;
+  background-color: #f4f6f1;
+}
+
+.calculate_notice_inner p {
+  margin: 0 6px;
+  font-size: 14px;
+  line-height: 22px;
+  color: #444;
+}

@@ -22,7 +22,7 @@ const Insurance = () => {
   return (
     <div className="insurance">
       <div className="insurance_title">
-        <h2>4대보험 급여 계산기</h2>
+        <h2>급여 계산기</h2>
         <p>
           월 보수액을 입력하면 4대보험 및 소득세 근로자/사업주 부담금을
           계산합니다.
@@ -31,48 +31,39 @@ const Insurance = () => {
       <div className="insurance_input_box">
         <div className="insurance_input_box_inner">
           <p>
-            월 보수액<span>(비과세 포함 금액 입력)</span>
+            월 보수액<span>(비과세 포함 총 급여 입력)</span>
           </p>
           <div className="input_box">
             <input type="text" value="월 보수액을 입력하세요." />
             <button>계산하기</button>
           </div>
+          <div className="nonTaxable">
+            <p>비과세 금액</p>
+            <input type="text" value="예) 200,000원" />
+          </div>
           <div className="input_select">
-            <p>선택입력</p>
-            <div className="input_select_inner">
-              <div className="non_taxable">
-                <span>비과세액</span>
-                <CircleQuestionMark className="non_taxable_icon" />
-                <div className="tooltip_box">
-                  <p>
-                    급여액 중 세금공제를 하지 않은 금액입니다.
-                    <br /> 본 계산기는 식대 20만원으로 설정되어 있으며, 직접
-                    입력도 가능합니다.
-                  </p>
-                  <p>다음 항목들이 비과세에 해당됩니다.</p>
-                  <ul>
-                    <li>실비변상적인 급여</li>
-                    <li>식사대, 출산·보육수당</li>
-                    <li>국외근로소득</li>
-                    <li>생산직 근로자 야간근로수당</li>
-                    <li>외국인 근로자 과세특례</li>
-                    <li>기타 비과세 소득</li>
-                  </ul>
-                </div>
-              </div>
-              <input type="text" value="200,000원" />
-            </div>
+            <p>💡 비과세란?</p>
+            <span>
+              식대 (월 20만원) 자가운전보조금 (월 20만원) 육아수당 등 세금이
+              부과되지 않는 금액입니다. <br />
+              급여액에서 비과세액을 뺀 후, 나머지 금액에 세금을 적용합니다.
+              <br />
+              <strong>식대 20만원이 기본 적용되며, </strong>
+              비과세 금액이 다르면 수정이 가능합니다.
+            </span>
           </div>
         </div>
       </div>
       <div className="result_card">
         <div className="result_header">
-          <span>급여 계산 결과</span>
-          <button onClick={() => setShowbutton(!showButton)}>
-            {showButton ? "사업주 부담 숨기기" : "사업주 부담 보기"}
-          </button>
+          <div className="header_inner">
+            <span>급여 계산 결과</span>
+            <button onClick={() => setShowbutton(!showButton)}>
+              {showButton ? "사업주 부담 숨기기" : "사업주 부담 보기"}
+            </button>
+          </div>
         </div>
-        <table>
+        <table className={showButton ? "table_wide" : "table_narrow"}>
           <thead>
             <tr>
               <th>항목</th>
@@ -87,12 +78,14 @@ const Insurance = () => {
                 <td>
                   {i.name}
                   <br />
-                  {i.rate}
+                  <span className="tbody_rate">{i.rate}</span>
                 </td>
                 <td>{i.employee.toLocaleString()}원</td>
                 {showButton && (
                   <td>
-                    {i.employer === 0 ? "-" : i.employer.toLocaleString()}원
+                    {i.employer === 0
+                      ? "-"
+                      : i.employer.toLocaleString() + "원"}
                   </td>
                 )}
                 {showButton && (
