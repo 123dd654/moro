@@ -27,15 +27,26 @@
   border-radius: 20px;
 }
 
+.time_day {
+  display: flex;
+}
+
 .weekly_time,
+.working_day,
 .money {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
+.working_day {
+  padding: 30px 30px 30px 0px;
+  width: 50%;
+}
+
 .weekly_time {
-  padding: 30px 30px 16px;
+  padding: 30px 30px 0px;
+  width: 50%;
 }
 
 .money {
@@ -43,6 +54,7 @@
 }
 
 .weekly_time p,
+.working_day p,
 .money p {
   margin: 0;
   font-size: 14px;
@@ -51,6 +63,7 @@
 }
 
 .weekly_time_input,
+.working_day_input,
 .money_input {
   display: flex;
   align-items: center;
@@ -60,6 +73,7 @@
 }
 
 .weekly_time_input input,
+.working_day_input input,
 .money_input input {
   flex: 1;
   border: none;
@@ -68,6 +82,7 @@
 }
 
 .weekly_time_input span,
+.working_day_input span,
 .money_input span {
   color: #888;
   font-size: 14px;
