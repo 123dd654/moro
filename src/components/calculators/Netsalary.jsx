@@ -1,5 +1,5 @@
-import "./netsalary.css";
 import { ReceiptText, CircleAlert } from "lucide-react";
+import "../../assets/css/netsalary.css";
 
 const Netsalary = () => {
   const deduction = [

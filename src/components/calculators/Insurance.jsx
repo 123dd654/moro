@@ -1,20 +1,38 @@
 import { useState } from "react";
 import { CircleAlert, CircleQuestionMark } from "lucide-react";
-import "./insurance.css";
+import "../../assets/css/insurance.css";
 
 const Insurance = () => {
   const [showButton, setShowbutton] = useState(false);
+  const [monthlySalary, setMonthlySalary] = useState("");
+  const [nonTaxableAmountInput, setNonTaxableAmountInput] = useState(200000);
+
+  const taxableIncome = monthlySalary - nonTaxableAmountInput;
+  const pension = taxableIncome * 0.0475;
+  const health = taxableIncome * 0.03595;
+  const nursing = health * 0.1314;
+  const employment = taxableIncome * 0.009;
 
   const item = [
-    { name: "국민연금", rate: "4.75%", employee: 118750, employer: 118750 },
-    { name: "건강보험", rate: "3.60%", employee: 90000, employer: 90000 },
+    {
+      name: "국민연금",
+      rate: "4.75%",
+      employee: pension,
+      employer: pension,
+    },
+    { name: "건강보험", rate: "3.595%", employee: health, employer: health },
     {
       name: "장기요양",
       rate: "건강보험료의 13.14%",
-      employee: 11826,
-      employer: 11826,
+      employee: nursing,
+      employer: nursing,
     },
-    { name: "고용보험", rate: "0.90%", employee: 22500, employer: 22500 },
+    {
+      name: "고용보험",
+      rate: "0.90%",
+      employee: employment,
+      employer: employment,
+    },
     { name: "소득세", rate: "간이세액표 기준", employee: 201650, employer: 0 },
     { name: "지방소득세", rate: "소득세의 10%", employee: 20165, employer: 0 },
   ];
@@ -34,13 +52,43 @@ const Insurance = () => {
             월 보수액<span>(비과세 포함 총 급여 입력)</span>
           </p>
           <div className="input_box">
-            <input type="text" value="월 보수액을 입력하세요." />
+            <input
+              type="number"
+              placeholder="월 보수액을 입력하세요."
+              value={monthlySalary}
+              onChange={(e) => setMonthlySalary(e.target.value)}
+            />
             <button>계산하기</button>
           </div>
-          <div className="nonTaxable">
-            <p>비과세 금액</p>
-            <input type="text" value="예) 200,000원" />
+          <p className="total">
+            보수월액 : {Number(monthlySalary).toLocaleString()}원
+          </p>
+          <div className="Checklist">
+            <div className="nonTaxable">
+              <p>비과세 금액</p>
+              <input
+                type="number"
+                placeholder="예) 200,000원"
+                value={nonTaxableAmountInput}
+                onChange={(e) => setNonTaxableAmountInput(e.target.value)}
+              />
+            </div>
+            <div className="responsibility_family">
+              <p>부양가족 수</p>
+              <button className="minus_Btn">-</button>
+              <span>1</span>
+              <button className="plus_Btn">+</button>
+            </div>
+            <div className="children">
+              <p>8세이상 20세이하 자녀수</p>
+              <button className="minus_Btn">-</button>
+              <span>0</span>
+              <button className="plus_Btn">+</button>
+            </div>
           </div>
+          <p className="total">
+            비과세 금액 : {Number(nonTaxableAmountInput).toLocaleString()}원
+          </p>
           <div className="input_select">
             <p>💡 비과세란?</p>
             <span>
@@ -74,22 +122,24 @@ const Insurance = () => {
           </thead>
           <tbody>
             {item.map((i) => (
-              <tr key={item.name}>
+              <tr key={i.name}>
                 <td>
                   {i.name}
                   <br />
                   <span className="tbody_rate">{i.rate}</span>
                 </td>
-                <td>{i.employee.toLocaleString()}원</td>
+                <td>{Math.floor(i.employee).toLocaleString()}원</td>
                 {showButton && (
                   <td>
                     {i.employer === 0
                       ? "-"
-                      : i.employer.toLocaleString() + "원"}
+                      : Math.floor(i.employer).toLocaleString() + "원"}
                   </td>
                 )}
                 {showButton && (
-                  <td>{(i.employee + i.employer).toLocaleString()}원</td>
+                  <td>
+                    {Math.floor(i.employee + i.employer).toLocaleString()}원
+                  </td>
                 )}
               </tr>
             ))}
@@ -98,13 +148,15 @@ const Insurance = () => {
             <tr>
               <td>합계</td>
               <td>
-                {item.reduce((acc, i) => acc + i.employee, 0).toLocaleString()}
+                {item
+                  .reduce((acc, i) => acc + Math.floor(i.employee), 0)
+                  .toLocaleString()}
                 원
               </td>
               {showButton && (
                 <td>
                   {item
-                    .reduce((acc, i) => acc + i.employer, 0)
+                    .reduce((acc, i) => acc + Math.floor(i.employer), 0)
                     .toLocaleString()}
                   원
                 </td>
@@ -112,7 +164,10 @@ const Insurance = () => {
               {showButton && (
                 <td>
                   {item
-                    .reduce((acc, i) => acc + (i.employee + i.employer), 0)
+                    .reduce(
+                      (acc, i) => acc + Math.floor(i.employee + i.employer),
+                      0,
+                    )
                     .toLocaleString()}
                   원
                 </td>

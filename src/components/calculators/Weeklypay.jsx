@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "./weeklypay.css";
 import { CircleCheck, CircleAlert } from "lucide-react";
+import "../../assets/css/weeklypay.css";
 
 const Weeklypay = () => {
   const [hours, setHours] = useState("");
