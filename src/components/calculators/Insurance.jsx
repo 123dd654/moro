@@ -3,35 +3,79 @@ import { CircleAlert, CircleQuestionMark } from "lucide-react";
 import "../../assets/css/insurance.css";
 
 const Insurance = () => {
+  const [result, setResult] = useState(null);
+  const [family, setFamily] = useState(1);
+  const [children, setChildren] = useState(0);
   const [showButton, setShowbutton] = useState(false);
   const [monthlySalary, setMonthlySalary] = useState("");
   const [nonTaxableAmountInput, setNonTaxableAmountInput] = useState(200000);
 
-  const taxableIncome = monthlySalary - nonTaxableAmountInput;
-  const pension = taxableIncome * 0.0475;
-  const health = taxableIncome * 0.03595;
-  const nursing = health * 0.1314;
-  const employment = taxableIncome * 0.009;
+  const increaseFamily = (value) => {
+    if (family + value > 11) return;
+    setFamily(family + value);
+  };
+
+  const decreaseFamily = (value) => {
+    if (family - value < 1) return;
+    if (family <= children + 1) {
+      alert("부양가족 수는 배우자 및 자녀를 포함해 최소 1명이상이여야 합니다.");
+      return;
+    }
+    setFamily(family - value);
+  };
+
+  const increaseChildren = (value) => {
+    if (children + value >= family) {
+      alert("자녀수가 부양가족수보다 같거나 클 수 없습니다.");
+      return;
+    }
+    setChildren(children + value);
+  };
+
+  const decreaseChildren = (value) => {
+    if (children - value < 0) return;
+    setChildren(children - value);
+  };
+
+  const handleCalculate = () => {
+    const taxableIncome = Math.max(0, monthlySalary - nonTaxableAmountInput);
+    const pension = taxableIncome * 0.0475;
+    const health = taxableIncome * 0.03595;
+    const nursing = health * 0.1314;
+    const employment = taxableIncome * 0.009;
+
+    setResult({
+      pension,
+      health,
+      nursing,
+      employment,
+    });
+  };
 
   const item = [
     {
       name: "국민연금",
       rate: "4.75%",
-      employee: pension,
-      employer: pension,
+      employee: result?.pension || 0,
+      employer: result?.pension || 0,
     },
-    { name: "건강보험", rate: "3.595%", employee: health, employer: health },
+    {
+      name: "건강보험",
+      rate: "3.595%",
+      employee: result?.health || 0,
+      employer: result?.health || 0,
+    },
     {
       name: "장기요양",
       rate: "건강보험료의 13.14%",
-      employee: nursing,
-      employer: nursing,
+      employee: result?.nursing || 0,
+      employer: result?.nursing || 0,
     },
     {
       name: "고용보험",
       rate: "0.90%",
-      employee: employment,
-      employer: employment,
+      employee: result?.employment || 0,
+      employer: result?.employment || 0,
     },
     { name: "소득세", rate: "간이세액표 기준", employee: 201650, employer: 0 },
     { name: "지방소득세", rate: "소득세의 10%", employee: 20165, employer: 0 },
@@ -56,9 +100,19 @@ const Insurance = () => {
               type="number"
               placeholder="월 보수액을 입력하세요."
               value={monthlySalary}
-              onChange={(e) => setMonthlySalary(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                const numValue = Number(value);
+
+                if (numValue < 0) {
+                  alert("0원 이상 입력해주세요.");
+                  return;
+                }
+
+                setMonthlySalary(e.target.value);
+              }}
             />
-            <button>계산하기</button>
+            <button onClick={handleCalculate}>계산하기</button>
           </div>
           <p className="total">
             보수월액 : {Number(monthlySalary).toLocaleString()}원
@@ -70,20 +124,62 @@ const Insurance = () => {
                 type="number"
                 placeholder="예) 200,000원"
                 value={nonTaxableAmountInput}
-                onChange={(e) => setNonTaxableAmountInput(e.target.value)}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  const numValue = Number(value);
+
+                  if (numValue < 0) {
+                    alert("0원 이상 입력해주세요.");
+                    return;
+                  }
+                  if (numValue > 200000) {
+                    alert("20만원 이하로 입력해주세요.");
+                    return;
+                  }
+
+                  setNonTaxableAmountInput(value);
+                }}
               />
             </div>
             <div className="responsibility_family">
               <p>부양가족 수</p>
-              <button className="minus_Btn">-</button>
-              <span>1</span>
-              <button className="plus_Btn">+</button>
+              <button
+                className="minus_Btn"
+                onClick={() => {
+                  decreaseFamily(1);
+                }}
+              >
+                -
+              </button>
+              <span>{family}</span>
+              <button
+                className="plus_Btn"
+                onClick={() => {
+                  increaseFamily(1);
+                }}
+              >
+                +
+              </button>
             </div>
             <div className="children">
               <p>8세이상 20세이하 자녀수</p>
-              <button className="minus_Btn">-</button>
-              <span>0</span>
-              <button className="plus_Btn">+</button>
+              <button
+                className="minus_Btn"
+                onClick={() => {
+                  decreaseChildren(1);
+                }}
+              >
+                -
+              </button>
+              <span>{children}</span>
+              <button
+                className="plus_Btn"
+                onClick={() => {
+                  increaseChildren(1);
+                }}
+              >
+                +
+              </button>
             </div>
           </div>
           <p className="total">
