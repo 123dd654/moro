@@ -46,13 +46,125 @@
   border-radius: 10px;
   border: 1px solid #bebebe;
   padding-left: 10px;
-  color: #bebebe;
+  /* color: #bebebe; */
 }
 
-.input_box_inner span {
+.input_box {
+  display: flex;
+  flex-direction: column;
+}
+
+.input_box input {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #bebebe;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+/* .input_box_inner span {
   color: #888;
   font-size: 12px;
-  margin-bottom: 20px;
+} */
+
+/* 1. 전체 박스의 머리 라인을 맞춥니다 */
+.Checklist {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+/* 2. 각 입력 영역(비과세, 부양가족, 자녀) 설정 */
+.nonTaxable,
+.responsibility_family,
+.children {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 3. 인풋창과 버튼 뭉치의 높이를 40px로 똑같이 맞춥니다 */
+.nonTaxable input,
+.btn_wrap {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* 4. 핵심: span이 메시지가 없어도 18px 공간을 차지하게 함 */
+.non,
+.error {
+  display: inline-block; /* span이 높이값을 가질 수 있게 변경 */
+  min-height: 18px; /* 글자가 없어도 18px의 투명한 벽을 만듦 */
+  margin-top: 6px;
+  font-size: 12px;
+  color: #888;
+  margin-left: 4px;
+}
+
+.error {
+  color: #ff4d4f; /* 에러 메시지 색상 */
+}
+
+.nonTaxable p {
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.nonTaxable input {
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #bebebe;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+.responsibility_family p,
+.children p {
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.responsibility_family button,
+.children button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #bebebe;
+  background-color: #f4f6f1;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.responsibility_family button.minus_Btn,
+.children button.minus_Btn {
+  font-size: 20px;
+  color: #222;
+  margin: 0;
+}
+
+.responsibility_family button.plus_Btn,
+.children button.plus_Btn {
+  font-size: 20px;
+  color: #222;
+  margin: 0;
+}
+
+.responsibility_family span,
+.children span {
+  padding: 18px;
+}
+
+.input_box_inner .total {
+  font-size: 12px;
+  color: #888;
+  font-weight: 400;
+  margin-left: 5px;
 }
 
 .input_box_inner button {
@@ -62,6 +174,9 @@
   background-color: #6a784d;
   color: #fff;
   font-size: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 .netsalary_result {
@@ -108,24 +223,26 @@
 }
 
 .deduction_title {
+  height: 36px;
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 18px 30px;
   border-bottom: 1px solid #ececec;
-  background-color: #fcfcfc;
+  background-color: #6a784d;
 }
 
 .deduction_title span {
+  margin: 0;
+  color: #fff;
   font-size: 16px;
-  font-weight: 700;
-  color: #222;
+  font-weight: 500;
 }
 
 .receipt_icon {
   width: 16px;
   height: 16px;
-  color: #666;
+  color: #fff;
 }
 
 .deduction_item,
@@ -135,7 +252,7 @@
   align-items: center;
   min-height: 56px;
   border-bottom: 1px solid #f3f3f3;
-  padding: 0 30px;
+  padding: 6px 40px;
 }
 
 .deduction_total span:last-child {
@@ -144,25 +261,26 @@
 
 .deduction_left {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  /* align-items: center; */
   gap: 4px;
 }
 
 .deduction_name {
   color: #222;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .deduction_rate {
-  color: #999;
-  font-size: 13px;
+  font-size: 12px;
+  color: #888;
+  margin: 0;
 }
 
 .deduction_value {
   color: #222;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
 }
 
 .deduction_total {

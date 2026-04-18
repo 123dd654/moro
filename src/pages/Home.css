@@ -117,6 +117,46 @@ main {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
+.card_section {
+  width: 100%;
+  margin-top: 190px;
+}
+
+.section_inner {
+  max-width: 1100px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.card_inner {
+  display: flex;
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #d9d9d9;
+  padding: 28px 24px;
+  border-radius: 20px;
+  background-color: #fff;
+  width: 250px;
+}
+
+.card_detail {
+  margin-top: 30px;
+}
+
+.card_detail p {
+  font-weight: 600;
+  margin: 12px 0;
+}
+
+.card_detail span {
+  color: #888;
+  font-size: 14px;
+  width: 60px;
+  line-height: 1.2;
+}
+
 .business {
   width: 100%;
   margin-top: 190px;
@@ -168,7 +208,7 @@ main {
   border: 1px solid #bebebe;
   margin-right: 12px;
   padding-left: 10px;
-  color: #bebebe;
+  color: #222;
 }
 
 .business_search button {

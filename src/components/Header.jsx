@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import "./header.css";
-import logo from "../assets/logo.png";
+import logo from "../assets/MORO.svg";
+import { useState } from "react";
+import "../assets/css/common.css";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header className="header">
+      <div className="header_blank"></div>
       <div className="header_inner">
         <div className="Header_left">
           <Link to="/">
@@ -12,7 +17,7 @@ const Header = () => {
           </Link>
         </div>
         <nav className="Header_right">
-          <ul>
+          <ul className={isOpen ? "open" : ""}>
             <li className="menu_item">
               <Link to="/calculator" className="menu_link">
                 계산기
@@ -33,7 +38,18 @@ const Header = () => {
             </li>
           </ul>
         </nav>
+        <div
+          className={`hamburger ${isOpen ? "open" : ""}`}
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
+      <div className="header_blank"></div>
     </header>
   );
 };

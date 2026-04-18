@@ -6,9 +6,13 @@
   background-color: #f6f6f6;
 }
 
+.header_blank {
+  width: 15%;
+}
+
 .header_inner {
   height: 50px;
-  width: 1200px;
+  width: 70%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,4 +75,58 @@
 .Impossible_item:hover .tooltip_text {
   opacity: 1;
   transform: translateX(-50%) translateY(4px);
+}
+
+/* 햄버거 메뉴 */
+
+.hamburger {
+  display: none;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #222;
+  margin: 3px 0;
+  transition: all 0.3s ease;
+}
+
+/* X 모양 변환 */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  .header_inner {
+    width: 80%;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .Header_right ul {
+    display: none;
+  }
+
+  .Header_right ul.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #f6f6f6;
+    padding: 20px;
+    gap: 20px;
+  }
 }

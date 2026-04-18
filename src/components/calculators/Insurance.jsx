@@ -1,54 +1,101 @@
 import { useState } from "react";
-import { CircleAlert, CircleQuestionMark } from "lucide-react";
+import { CircleAlert } from "lucide-react";
 import "../../assets/css/insurance.css";
+import "../../assets/css/common.css";
+import taxTable from "../../data/taxTable.json";
 
 const Insurance = () => {
   const [result, setResult] = useState(null);
   const [family, setFamily] = useState(1);
   const [children, setChildren] = useState(0);
+  const [famliyErrerMsg, setFamliyErrerMsg] = useState("");
+  const [childrenErrerMsg, setChildrenErrerMsg] = useState("");
   const [showButton, setShowbutton] = useState(false);
   const [monthlySalary, setMonthlySalary] = useState("");
   const [nonTaxableAmountInput, setNonTaxableAmountInput] = useState(200000);
+  const [nonTaxableError, setNonTaxableError] = useState("");
 
   const increaseFamily = (value) => {
     if (family + value > 11) return;
     setFamily(family + value);
+    setFamliyErrerMsg("");
   };
 
   const decreaseFamily = (value) => {
     if (family - value < 1) return;
     if (family <= children + 1) {
-      alert("부양가족 수는 배우자 및 자녀를 포함해 최소 1명이상이여야 합니다.");
+      setFamliyErrerMsg("부양가족 수는 자녀 포함 최소 1명 이상이어야 합니다.");
       return;
     }
+    setFamliyErrerMsg("");
     setFamily(family - value);
   };
 
   const increaseChildren = (value) => {
     if (children + value >= family) {
-      alert("자녀수가 부양가족수보다 같거나 클 수 없습니다.");
+      setChildrenErrerMsg("자녀수가 부양가족수보다 같거나 클 수 없습니다.");
       return;
     }
+    setChildrenErrerMsg("");
     setChildren(children + value);
   };
 
   const decreaseChildren = (value) => {
     if (children - value < 0) return;
     setChildren(children - value);
+    setChildrenErrerMsg("");
   };
 
   const handleCalculate = () => {
-    const taxableIncome = Math.max(0, monthlySalary - nonTaxableAmountInput);
-    const pension = taxableIncome * 0.0475;
-    const health = taxableIncome * 0.03595;
-    const nursing = health * 0.1314;
-    const employment = taxableIncome * 0.009;
+    const taxableIncome = Math.max(
+      0,
+      Number(monthlySalary) - Number(nonTaxableAmountInput),
+    );
+    const pension = Math.floor((taxableIncome * 475) / 10000 / 10) * 10;
+    const health = Math.floor((taxableIncome * 3595) / 100000 / 10) * 10;
+    const nursing = Math.floor((health * 1314) / 10000 / 10) * 10;
+    const employment = Math.floor((taxableIncome * 9) / 1000 / 10) * 10;
+
+    const found = taxTable.간이세액표.find(
+      (data) =>
+        taxableIncome >= data.월급여액_이상_천원 * 1000 &&
+        taxableIncome < data.월급여액_미만_천원 * 1000,
+    );
+
+    const key = family + "인";
+
+    const incomeTax = found?.공제대상가족수별_세액_원[key] || 0;
+
+    let childTaxCredit = 0;
+
+    if (children === 1) {
+      childTaxCredit = 20830;
+    } else if (children === 2) {
+      childTaxCredit = 45830;
+    } else if (children >= 3) {
+      childTaxCredit = 45830 + (children - 2) * 33330;
+    }
+
+    const finalIncomeTax = Math.max(0, incomeTax - childTaxCredit);
+
+    const localIncomeTax = Math.floor((finalIncomeTax * 0.1) / 10) * 10;
+
+    const totalEmployee =
+      pension + health + nursing + employment + finalIncomeTax + localIncomeTax;
+
+    const totaltax = monthlySalary - totalEmployee;
 
     setResult({
+      taxableIncome,
+      nonTaxableAmountInput,
       pension,
       health,
       nursing,
       employment,
+      finalIncomeTax,
+      localIncomeTax,
+      totalEmployee,
+      totaltax,
     });
   };
 
@@ -67,7 +114,7 @@ const Insurance = () => {
     },
     {
       name: "장기요양",
-      rate: "건강보험료의 13.14%",
+      rate: "건강보험료 x 13.14%",
       employee: result?.nursing || 0,
       employer: result?.nursing || 0,
     },
@@ -77,8 +124,18 @@ const Insurance = () => {
       employee: result?.employment || 0,
       employer: result?.employment || 0,
     },
-    { name: "소득세", rate: "간이세액표 기준", employee: 201650, employer: 0 },
-    { name: "지방소득세", rate: "소득세의 10%", employee: 20165, employer: 0 },
+    {
+      name: "소득세",
+      rate: "간이세액표 기준",
+      employee: result?.finalIncomeTax || 0,
+      employer: 0,
+    },
+    {
+      name: "지방소득세",
+      rate: "소득세 x 10%",
+      employee: result?.localIncomeTax || 0,
+      employer: 0,
+    },
   ];
 
   return (
@@ -109,14 +166,19 @@ const Insurance = () => {
                   return;
                 }
 
+                setNonTaxableError("");
                 setMonthlySalary(e.target.value);
               }}
             />
-            <button onClick={handleCalculate}>계산하기</button>
+            {nonTaxableError ? (
+              <div className="error">{nonTaxableError}</div>
+            ) : (
+              <div className="non">
+                보수월액 : {Number(monthlySalary).toLocaleString()}원
+              </div>
+            )}
           </div>
-          <p className="total">
-            보수월액 : {Number(monthlySalary).toLocaleString()}원
-          </p>
+
           <div className="Checklist">
             <div className="nonTaxable">
               <p>비과세 금액</p>
@@ -128,63 +190,90 @@ const Insurance = () => {
                   const value = e.target.value;
                   const numValue = Number(value);
 
-                  if (numValue < 0) {
-                    alert("0원 이상 입력해주세요.");
-                    return;
-                  }
-                  if (numValue > 200000) {
-                    alert("20만원 이하로 입력해주세요.");
+                  // 1. 에러 체크 구간
+                  if (value === "") {
+                    setNonTaxableError(""); // 빈 칸일 땐 에러 지움
+                    setNonTaxableAmountInput("");
                     return;
                   }
 
+                  if (numValue < 0) {
+                    setNonTaxableError("0원 이상 입력해주세요.");
+                    return;
+                  }
+
+                  if (numValue > 200000) {
+                    setNonTaxableError("20만원 이하로 입력해주세요.");
+                    return;
+                  }
+
+                  // 2. 정상 범위일 때 (에러 초기화 및 값 반영)
+                  setNonTaxableError("");
                   setNonTaxableAmountInput(value);
                 }}
               />
+              {nonTaxableError ? (
+                <div className="error">{nonTaxableError}</div>
+              ) : (
+                /* 에러가 없을 때만 비과세 금액 안내 표시 */
+                <div className="non">
+                  비과세 금액 : {Number(nonTaxableAmountInput).toLocaleString()}
+                  원
+                </div>
+              )}
             </div>
             <div className="responsibility_family">
               <p>부양가족 수</p>
-              <button
-                className="minus_Btn"
-                onClick={() => {
-                  decreaseFamily(1);
-                }}
-              >
-                -
-              </button>
-              <span>{family}</span>
-              <button
-                className="plus_Btn"
-                onClick={() => {
-                  increaseFamily(1);
-                }}
-              >
-                +
-              </button>
+              <div className="btn_wrap">
+                <button
+                  className="minus_Btn"
+                  onClick={() => {
+                    decreaseFamily(1);
+                  }}
+                >
+                  -
+                </button>
+                <span>{family}</span>
+                <button
+                  className="plus_Btn"
+                  onClick={() => {
+                    increaseFamily(1);
+                  }}
+                >
+                  +
+                </button>
+              </div>
+              <div className="error">
+                {famliyErrerMsg ? famliyErrerMsg : ""}
+              </div>
             </div>
             <div className="children">
               <p>8세이상 20세이하 자녀수</p>
-              <button
-                className="minus_Btn"
-                onClick={() => {
-                  decreaseChildren(1);
-                }}
-              >
-                -
-              </button>
-              <span>{children}</span>
-              <button
-                className="plus_Btn"
-                onClick={() => {
-                  increaseChildren(1);
-                }}
-              >
-                +
-              </button>
+              <div className="btn_wrap">
+                <button
+                  className="minus_Btn"
+                  onClick={() => {
+                    decreaseChildren(1);
+                  }}
+                >
+                  -
+                </button>
+                <span>{children}</span>
+                <button
+                  className="plus_Btn"
+                  onClick={() => {
+                    increaseChildren(1);
+                  }}
+                >
+                  +
+                </button>
+              </div>
+              <div className="error">
+                {childrenErrerMsg ? childrenErrerMsg : ""}
+              </div>
             </div>
           </div>
-          <p className="total">
-            비과세 금액 : {Number(nonTaxableAmountInput).toLocaleString()}원
-          </p>
+
           <div className="input_select">
             <p>💡 비과세란?</p>
             <span>
@@ -193,9 +282,35 @@ const Insurance = () => {
               급여액에서 비과세액을 뺀 후, 나머지 금액에 세금을 적용합니다.
               <br />
               <strong>식대 20만원이 기본 적용되며, </strong>
-              비과세 금액이 다르면 수정이 가능합니다.
+              비과세 금액이 다르면 20만원 미만에서 수정이 가능합니다.
+            </span>
+            <p>💡 개정사항</p>
+            <span>
+              <strong style={{ color: "#6a784d" }}>2026년 03월 01일</strong>{" "}
+              이후 원천징수분부터 적용입니다.
+              <br />
+              <strong>
+                → 8세이상 20세 이하 자녀가 1명인 경우 : 20,830원 <br />→ 8세이상
+                20세 이하 자녀가 2명인 경우 : 45,830원 <br />→ 8세이상 20세 이하
+                자녀가 3명인 경우 : 45,830원 + 2명 초과 자녀 1명당 33,330원{" "}
+              </strong>
+              <br />
+              근로소득 간이세액표의 금액에서 해당 자녀수별로 위 금액을
+              공제합니다.
             </span>
           </div>
+          <button className="result_btn" onClick={handleCalculate}>
+            계산하기
+          </button>
+        </div>
+      </div>
+      <div className="insurance_result">
+        <div className="insurance_result_inner">
+          <p>최종 세후 급여(월)</p>
+          <h1>{Math.floor(result?.totaltax || 0).toLocaleString()}원</h1>
+          <span>
+            ※ 본 계산 결과는 예상 금액이며, 실제 급여와 차이가 있을 수 있습니다.
+          </span>
         </div>
       </div>
       <div className="result_card">
@@ -244,10 +359,7 @@ const Insurance = () => {
             <tr>
               <td>합계</td>
               <td>
-                {item
-                  .reduce((acc, i) => acc + Math.floor(i.employee), 0)
-                  .toLocaleString()}
-                원
+                {Math.floor(result?.totalEmployee || 0).toLocaleString()}원
               </td>
               {showButton && (
                 <td>
@@ -271,6 +383,34 @@ const Insurance = () => {
             </tr>
           </tfoot>
         </table>
+      </div>
+      <div className="netsalary_summation">
+        <p>계산 요약</p>
+        <div>
+          <div className="summation_Before">
+            <span>세전 급여</span>
+            <span>
+              {Math.floor(result?.taxableIncome || 0).toLocaleString()}원
+            </span>
+          </div>
+          <div className="summation_Before">
+            <span>비과세 금액</span>
+            <span>
+              {Math.floor(result?.nonTaxableAmountInput || 0).toLocaleString()}
+              원
+            </span>
+          </div>
+          <div className="summation_total">
+            <span>총 공제액</span>
+            <span>
+              - {Math.floor(result?.totalEmployee || 0).toLocaleString()}원
+            </span>
+          </div>
+        </div>
+        <div className="summation_netsalary">
+          <span>실수령액</span>
+          <span>{Math.floor(result?.totaltax || 0).toLocaleString()}원</span>
+        </div>
       </div>
       <div className="insurance_notice">
         <div className="insurance_notice_inner">
