@@ -5,7 +5,7 @@
 
 ## [메인화면 이미지]
 
-<img width="1920" height="3006" alt="Image" src="https://github.com/user-attachments/assets/7bf57b0f-25df-41fe-a9fd-6b6533688cdd" />
+<img width="1920" height="2586" alt="Image" src="https://github.com/user-attachments/assets/f4043314-a36a-4b32-a179-ade2aedcc114" />
 
 ## 🛠 Tech Stack
 
@@ -18,13 +18,19 @@
 사용자의 입력값을 기반으로 실질적인 계산 결과를 제공하는 기능 구현에 집중했습니다.  
 단순 UI 구현이 아닌, 입력 → 계산 → 결과 출력까지의 흐름을 고려하여 개발하고 있습니다.
 
-## 🚀 Key Features (구현 예정 기능)
+## 💻 Key Features (구현 완료)
 
 - 실수령액 역계산
 - 4대보험 계산
 - 주휴수당 계산
 - 사업자등록 조회
-- 도서 추천 및 도서 검색
+
+## 🚀 Planned Features (구현 예정 기능)
+
+- 로그인, 회원가입
+- 세금 관련 질문 게시판
+- 사용자 간 소통 커뮤니티
+- 1년치 세무 달력
 
 ## 🧩 What I did
 
