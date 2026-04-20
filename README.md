@@ -41,4 +41,5 @@ More Open, Real, Ours
 - 세무 일정 확인
 
 ## 05. 사이트 화면
-<img width="1842" height="619" alt="Image" src="https://github.com/user-attachments/assets/4dd0c564-9fa1-49aa-862d-983a8f9c30f3" />
+<img width="957" height="619" alt="Image" src="https://github.com/user-attachments/assets/97127e16-d6aa-41d7-8de5-e30934b3fd66" />
+<img width="967" height="571" alt="Image" src="https://github.com/user-attachments/assets/4b647dc5-26da-4b3a-8999-6befbdadd83c" />
