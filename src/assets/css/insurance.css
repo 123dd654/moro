@@ -345,3 +345,9 @@ tfoot td:last-child {
   color: #222;
   font-weight: 500;
 }
+
+@media (max-width: 760px) {
+  .hide_mobile {
+    display: none;
+  }
+}

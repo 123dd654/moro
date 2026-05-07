@@ -17,18 +17,27 @@ main {
   padding-top: 80px; /* 헤더 높이만큼 */
 }
 
+.container {
+  max-width: 1200px; /* 전체 사이트 기준 폭 */
+  margin: 0 auto; /* 중앙 정렬 */
+  padding: 0 20px; /* 양쪽 띄우기 (이게 핵심!) */
+  box-sizing: border-box;
+}
+
 .introduction {
-  width: 100%;
-  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* center 말고 */
+  align-items: center;
+  text-align: center;
 }
 
 .introduction_top {
   text-align: center;
-  margin-top: 120px;
-  margin-bottom: 80px;
+  margin: 120px 0 80px;
   line-height: 1.4;
   letter-spacing: 0.2px;
-  font-size: 40px;
+  font-size: clamp(24px, 4vw, 40px);
   color: #222;
 }
 
@@ -42,7 +51,7 @@ main {
   line-height: 1.4;
   letter-spacing: 0.2px;
   margin-bottom: 130px;
-  font-size: 18px;
+  font-size: clamp(13px, 2vw, 18px);
 }
 
 .middle_color {
@@ -96,12 +105,12 @@ main {
 
 .main_btn {
   display: inline-block;
-  padding: 14px 28px;
+  padding: clamp(10px, 2.5vw, 14px) clamp(18px, 4vw, 28px);
   border: none;
   border-radius: 999px;
   background-color: #6a784d;
   color: white;
-  font-size: 16px;
+  font-size: clamp(12px, 2.5vw, 18px);
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -130,15 +139,21 @@ main {
 
 .card_inner {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  max-width: 1200px; /* PC 사이즈 기준 */
+  margin: 0 auto; /* 가운데 정렬 */
+  padding: 20px;
 }
 
+/* 1. 데스크탑 (기본): 4개씩 */
 .card {
   border: 1px solid #d9d9d9;
   padding: 28px 24px;
   border-radius: 20px;
   background-color: #fff;
-  width: 250px;
+  width: calc((100% - 60px) / 4); /* (100% - gap 3개) / 4 */
+  box-sizing: border-box;
 }
 
 .card_detail {
@@ -158,8 +173,8 @@ main {
 }
 
 .business {
-  width: 100%;
-  margin-top: 190px;
+  width: 70%;
+  margin: 190px auto 0;
 }
 
 .business_title {
@@ -169,21 +184,22 @@ main {
 .business_title h2 {
   color: #222;
   font-size: 30px;
+  font-size: clamp(20px, 4vw, 30px);
   margin-bottom: 20px;
 }
 
 .business_title p {
   color: #888;
   font-size: 16px;
+  font-size: clamp(11px, 3vw, 16px);
   margin-top: 0;
 }
 
 .business_box {
-  width: 1100px;
   border: 1px solid #d9d9d9;
-  margin: 54px auto 28px;
   border-radius: 20px;
   background-color: #fff;
+  margin: 54px auto 28px;
 }
 
 .business_box_inner {
@@ -191,33 +207,44 @@ main {
 }
 
 .business_box p {
-  font-weight: bold;
-  color: #444;
-  font-size: 20px;
-  margin: 10px 0 20px;
+  font-weight: 500;
+  color: #666;
+  font-size: clamp(13px, 3vw, 16px);
+  margin: 10px 0 10px;
 }
 .business_search {
   display: flex;
   margin-bottom: 8px;
+  gap: 12px;
+}
+
+.business_search .business_search_input::placeholder {
+  color: #d1d5db;
 }
 
 .business_search .business_search_input {
-  width: 860px;
+  width: 100%;
+  max-width: 860px;
   height: 40px;
   border-radius: 10px;
-  border: 1px solid #bebebe;
-  margin-right: 12px;
+  border: 1px solid #d1d5db;
   padding-left: 10px;
   color: #222;
+  flex: 3;
+  min-width: 0;
 }
 
 .business_search button {
-  width: 150px;
+  width: 100%;
+  max-width: 150px;
   height: 44px;
   background-color: #6a784d;
   color: #fff;
   border: 1px;
   border-radius: 10px;
+  font-size: clamp(12px, 2vw, 14px);
+  flex: 1;
+  min-width: 0;
 }
 
 .business_box_inner span {
@@ -226,8 +253,6 @@ main {
 }
 
 .business_result {
-  width: 1100px;
-  margin: 30px auto 0;
   border: 1px solid #d9d9d9;
   border-radius: 20px;
   background-color: #fff;
@@ -281,11 +306,11 @@ main {
 }
 
 .result_row {
-  display: grid;
-  grid-template-columns: 140px 1fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   min-height: 56px;
-  padding: 0 24px;
+  padding: 0 40px;
   border-bottom: 1px solid #f3f3f3;
 }
 
@@ -322,7 +347,7 @@ main {
 
 .business_result_notice {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 6px;
   padding: 14px 24px 18px;
   border-top: 1px solid #ececec;
@@ -342,250 +367,104 @@ main {
   color: #888;
 }
 
-.book {
-  width: 1100px;
-  margin: 190px auto 0;
+/* 2. 태블릿 (1024px 이하): 2개씩 */
+@media (max-width: 1024px) {
+  .card {
+    width: calc((100% - 20px) / 2); /* (100% - gap 1개) / 2 */
+  }
+
+  .business_result_body .result_row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .business_box_inner {
+    padding: 30px 40px;
+  }
 }
 
-.book_title {
-  text-align: center;
-  margin-bottom: 40px;
-}
+/* 3. 모바일 (767px 이하): 숨기기 */
+@media (max-width: 767px) {
+  .introduction_top {
+    margin: 80px 0 60px;
+  }
 
-.book_title h2 {
-  font-size: 30px;
-  margin-bottom: 16px;
-}
+  .introduction_middle {
+    margin-bottom: 60px;
+  }
 
-.book_title p {
-  font-size: 16px;
-  color: #888;
-}
+  .card_section {
+    display: none; /* 질문하신 대로 모바일에서 섹션 자체를 제거 */
+  }
 
-.book_box {
-  border: 1px solid #d9d9d9;
-  border-radius: 20px;
-  padding: 28px 32px;
-  background: #fff;
-}
+  .scroll {
+    margin-top: 130px;
+  }
 
-.book_search {
-  height: 48px;
-  border: 1px solid #d9d9d9;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-}
+  .container .business {
+    margin-top: 100px;
+    width: 100%;
+  }
 
-.book_search .Search {
-  width: 14px;
-  height: 14px;
-  color: #bebebe;
-}
+  .business .business_title h2 {
+    margin-bottom: 10px;
+  }
 
-.book_search span {
-  font-size: 14px;
-  color: #bebebe;
-  margin-left: 6px;
-}
+  .business .business_box {
+    margin: 20px auto 10px;
+  }
 
-.book_button {
-  margin-top: 18px;
-  display: flex;
-  gap: 8px;
-}
+  .business_box .business_box_inner p {
+    margin: 0 0 12px;
+  }
 
-.book_button .check {
-  border: 1px solid #6a784d;
-  background: #6a784d;
-  color: #fff;
-}
+  .business_box .business_box_inner {
+    padding: 20px;
+  }
 
-.book_button button {
-  height: 34px;
-  padding: 0 14px;
-  border-radius: 999px;
-  border: 1px solid #d9d9d9;
-  background: #fff;
-  font-size: 13px;
-  cursor: pointer;
-}
+  .business_box_inner .business_search {
+    margin-bottom: 0;
+  }
 
-.book_button button:hover {
-  background: #6a784d;
-  color: #fff;
-}
+  .business_box_inner .business_search .business_search_input {
+    height: 30px;
+    font-size: 12px;
+  }
 
-.book_result {
-  margin-top: 40px;
-}
+  .business_box_inner .business_search button {
+    height: 33px;
+  }
 
-.book_result p {
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 10px;
-}
+  .business_result_body .result_row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    min-height: 46px;
+  }
 
-.book_result span {
-  color: #6a784d;
-}
+  .business_result_header {
+    padding: 18px 16px;
+  }
 
-/* 핵심 */
-.book_slider_outer {
-  width: calc(1100px + 96px); /* 카드 1100 + 화살표 영역 */
-  margin-left: -48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+  .business_result_title span {
+    font-size: 15px;
+  }
 
-/* 카드 영역은 1100 고정 */
-.book_slider {
-  width: 1100px;
-  overflow: hidden;
-}
+  .business_result_body .result_row .result_label,
+  .business_result_body .result_row .result_value {
+    font-size: 14px;
+    font-weight: 400;
+  }
 
-/* 보이는 창 */
-.slider_view {
-  width: 1100px;
-  overflow: hidden;
-  /* display: flex; */
-  /* gap: 20px; */
-}
+  .result_value .result_badge {
+    border: 0;
+    padding: 0;
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+  }
 
-.slider_track {
-  display: flex;
-  gap: 20px;
-  transition: transform 0.4s ease;
-}
-
-/* 카드 줄 */
-
-/* 카드 4개 + gap 3개 = 1100 맞춤 */
-.history {
-  width: 260px;
-  min-width: 260px;
-  border-radius: 16px;
-  border: 1px solid #e5e5e5;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  background: #fff;
-}
-
-.history_box_img {
-  width: 100%;
-  height: 200px;
-  background: #f8f8f8;
-  border-radius: 16px 16px 0 0;
-  overflow: hidden;
-  border: 0;
-  align-items: center;
-}
-
-.category {
-  width: 70px;
-  height: 18px;
-  border: 1px solid #e5e5e5;
-  font-size: 12px;
-  border-radius: 10px;
-  margin: 5px 0 0 5px;
-  text-align: center;
-  background-color: #fff;
-  color: #888;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.imgbox {
-  width: 130px;
-  margin: 30px auto 0;
-}
-
-.history_box_img img {
-  width: 100%;
-}
-
-.history_box_detail {
-  margin: 15px;
-  height: 140px;
-}
-
-.history_box_detail h3 {
-  margin: 0;
-  color: #444;
-  font-size: 16px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.history_box_detail .author {
-  margin: 0;
-  font-size: 12px;
-  color: #888;
-}
-
-.history_box_detail .description {
-  /* padding-top: 10px; */
-  height: 60px;
-  color: #222;
-  font-size: 12px;
-}
-
-.pricing_and_links {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.pricing_and_links span {
-  display: block;
-  width: 90%;
-  font-size: 14px;
-}
-
-.pricing_and_links .link_btn {
-  width: 10%;
-  height: 20px;
-  border: 0;
-  border-radius: 100%;
-  /* background-color: #6a784d; */
-  color: #6a784d;
-  cursor: pointer;
-  text-align: center;
-  font-size: 12px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  border: 1px solid #6a784d;
-}
-
-.pricing_and_links .link_btn:hover {
-  color: #fff;
-  background-color: #6a784d;
-  border: 1px solid #6a784d;
-}
-
-/* 화살표 */
-.arrow {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid #ddd;
-  background: #fff;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.arrow:hover {
-  background: #6a784d;
-  color: #fff;
+  .business_result_notice span {
+    font-size: 12px !important;
+  }
 }

@@ -304,7 +304,7 @@ const Insurance = () => {
           </button>
         </div>
       </div>
-      <div className="insurance_result">
+      <div className={`insurance_result ${!result ? "hide_mobile" : ""}`}>
         <div className="insurance_result_inner">
           <p>최종 세후 급여(월)</p>
           <h1>{Math.floor(result?.totaltax || 0).toLocaleString()}원</h1>
@@ -313,7 +313,7 @@ const Insurance = () => {
           </span>
         </div>
       </div>
-      <div className="result_card">
+      <div className={`result_card ${!result ? "hide_mobile" : ""}`}>
         <div className="result_header">
           <div className="header_inner">
             <span>급여 계산 결과</span>
@@ -384,7 +384,7 @@ const Insurance = () => {
           </tfoot>
         </table>
       </div>
-      <div className="netsalary_summation">
+      <div className={`netsalary_summation ${!result ? "hide_mobile" : ""}`}>
         <p>계산 요약</p>
         <div>
           <div className="summation_Before">
@@ -412,7 +412,7 @@ const Insurance = () => {
           <span>{Math.floor(result?.totaltax || 0).toLocaleString()}원</span>
         </div>
       </div>
-      <div className="insurance_notice">
+      <div className={`insurance_notice ${!result ? "hide_mobile" : ""}`}>
         <div className="insurance_notice_inner">
           <p>
             <CircleAlert className="check_point_icon" />
