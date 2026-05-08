@@ -12,8 +12,10 @@ const Insurance = () => {
   const [childrenErrerMsg, setChildrenErrerMsg] = useState("");
   const [showButton, setShowbutton] = useState(false);
   const [monthlySalary, setMonthlySalary] = useState("");
+  const [salaryError, setSalaryError] = useState("");
   const [nonTaxableAmountInput, setNonTaxableAmountInput] = useState(200000);
   const [nonTaxableError, setNonTaxableError] = useState("");
+  const [touched, setTouched] = useState(false);
 
   const increaseFamily = (value) => {
     if (family + value > 11) return;
@@ -138,6 +140,12 @@ const Insurance = () => {
     },
   ];
 
+  const isInvalid =
+    !touched ||
+    !monthlySalary ||
+    Number(monthlySalary) <= 0 ||
+    Number(nonTaxableAmountInput) > Number(monthlySalary);
+
   return (
     <div className="insurance">
       <div className="insurance_title">
@@ -159,22 +167,37 @@ const Insurance = () => {
               value={monthlySalary}
               onChange={(e) => {
                 const value = e.target.value;
-                const numValue = Number(value);
 
-                if (numValue < 0) {
-                  alert("0원 이상 입력해주세요.");
+                if (value === "") {
+                  setMonthlySalary("");
+                  setSalaryError("");
                   return;
                 }
 
-                setNonTaxableError("");
-                setMonthlySalary(e.target.value);
+                const numValue = Number(value);
+                const nonTax = Number(nonTaxableAmountInput || 0);
+
+                if (numValue < 0) {
+                  setSalaryError("0원 이상 입력해주세요.");
+                  return;
+                }
+
+                // ✔ 핵심 비교 로직 (보수월액에서 처리)
+                if (nonTax > 0 && nonTax > numValue) {
+                  setSalaryError("입력한 보수월액보다 비과세 금액이 큽니다.");
+                } else {
+                  setSalaryError("");
+                }
+
+                setTouched(true);
+                setMonthlySalary(value);
               }}
             />
-            {nonTaxableError ? (
-              <div className="error">{nonTaxableError}</div>
+            {salaryError ? (
+              <div className="error">{salaryError}</div>
             ) : (
               <div className="non">
-                보수월액 : {Number(monthlySalary).toLocaleString()}원
+                보수월액 : {Number(monthlySalary || 0).toLocaleString()}원
               </div>
             )}
           </div>
@@ -299,8 +322,16 @@ const Insurance = () => {
               공제합니다.
             </span>
           </div>
-          <button className="result_btn" onClick={handleCalculate}>
-            계산하기
+          <button
+            className={`result_btn ${isInvalid ? "disabled" : ""}`}
+            onClick={handleCalculate}
+            disabled={isInvalid}
+          >
+            {!touched
+              ? "금액을 입력해주세요"
+              : isInvalid
+                ? "입력값을 확인해주세요"
+                : "계산하기"}
           </button>
         </div>
       </div>

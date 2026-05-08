@@ -1,5 +1,8 @@
 .weeklypay {
   width: 100%;
+  min-height: 1000px;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .weeklypay_title {
@@ -9,18 +12,19 @@
 
 .weeklypay_title h2 {
   color: #222;
-  font-size: 30px;
+  font-size: clamp(20px, 2vw, 30px);
   margin-bottom: 10px;
 }
 
 .weeklypay_title p {
   color: #888;
-  font-size: 16px;
+  font-size: clamp(11px, 2vw, 16px);
   margin-top: 0;
 }
 
 .weeklypay_input {
-  width: 1000px;
+  width: 100%;
+  max-width: 900px;
   margin: 0 auto;
   border: 1px solid #d9d9d9;
   background-color: #fff;
@@ -58,7 +62,7 @@
 .money p {
   margin: 0;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   color: #444;
 }
 
@@ -67,7 +71,7 @@
 .money_input {
   display: flex;
   align-items: center;
-  border: 1px solid #d9d9d9;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   padding: 0 12px;
 }
@@ -79,19 +83,18 @@
   border: none;
   outline: none;
   height: 38px;
+  color: #222;
 }
 
 .weekly_time_input span,
 .working_day_input span,
 .money_input span {
-  color: #888;
+  color: #222;
   font-size: 14px;
 }
 
 .weeklypay_btn {
-  /* width: 100%; */
   padding: 20px 30px 20px;
-  /* margin: 0 auto; */
 }
 
 .weeklypay_btn button {
@@ -107,7 +110,8 @@
 
 .answer,
 .fail {
-  width: 1000px;
+  width: 100%;
+  max-width: 900px;
   margin: 10px auto;
   border: 1px solid #d9d9d9;
   background-color: #fff;
@@ -147,7 +151,8 @@
 .calculate,
 .final_result,
 .calculate_notice {
-  width: 1000px;
+  width: 100%;
+  max-width: 900px;
   margin: 6px auto;
   border: 1px solid #d9d9d9;
   background-color: #fff;
@@ -232,4 +237,97 @@
   font-size: 14px;
   line-height: 22px;
   color: #444;
+}
+
+@media (max-width: 767px) {
+  .weeklypay_title {
+    margin: 30px;
+  }
+
+  .time_day {
+    flex-direction: column;
+  }
+
+  .weekly_time {
+    width: 100%;
+    padding: 30px 20px 10px 20px;
+    box-sizing: border-box;
+  }
+
+  .money {
+    width: 100%;
+    padding: 10px 20px 20px;
+    box-sizing: border-box;
+  }
+
+  .working_day {
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .weekly_time_input input,
+  .working_day_input input,
+  .money_input input {
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .weeklypay_btn {
+    padding: 10px 20px 30px;
+  }
+
+  .answer_inner,
+  .fail_inner {
+    padding: 20px 20px;
+  }
+
+  .answer_inner svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .answer_inner_p p {
+    font-size: 15px;
+  }
+
+  .answer_inner_p span {
+    font-size: 13px;
+  }
+
+  .calculate_inner {
+    padding: 14px 20px;
+  }
+
+  .calculate_hour p,
+  .calculate_hour span,
+  .calculate_result p,
+  .calculate_result span {
+    font-size: 13px;
+  }
+
+  .final_result_inner {
+    padding: 14px 20px;
+  }
+
+  .week_money,
+  .month_money {
+    padding: 10px 0;
+  }
+
+  .week_money p,
+  .week_money span,
+  .month_money p,
+  .month_money span {
+    font-size: 14px;
+  }
+
+  .calculate_notice_inner svg {
+    width: 24px;
+  }
+
+  .calculate_notice_inner p {
+    line-height: 18px;
+    font-size: 12px;
+  }
 }

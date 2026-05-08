@@ -1,5 +1,7 @@
 .insurance {
   width: 100%;
+  box-sizing: border-box;
+  padding: 0 20px;
 }
 
 .insurance_title {
@@ -10,17 +12,20 @@
 .insurance_title h2 {
   color: #222;
   font-size: 30px;
+  font-size: clamp(20px, 2vw, 30px);
   margin-bottom: 10px;
 }
 
 .insurance_title p {
   color: #888;
   font-size: 16px;
+  font-size: clamp(12px, 2vw, 16px);
   margin-top: 0;
 }
 
 .insurance_input_box {
-  width: 1000px;
+  width: 100%;
+  max-width: 900px;
   margin: 0 auto;
   border: 1px solid #d9d9d9;
   background-color: #fff;
@@ -36,8 +41,9 @@
 
 .insurance_input_box_inner p {
   margin: 0;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 14px;
+  color: #222;
+  font-weight: 600;
 }
 
 .insurance_input_box_inner .total {
@@ -58,13 +64,18 @@
   flex-direction: column;
 }
 
+.input_box input::placeholder {
+  color: #d1d5db;
+}
+
 .input_box input {
   width: 100%;
   height: 40px;
   border-radius: 10px;
-  border: 1px solid #bebebe;
+  border: 1px solid #d1d5db;
   padding-left: 10px;
   box-sizing: border-box;
+  color: #222;
 }
 
 .result_btn {
@@ -78,6 +89,13 @@
   box-sizing: border-box;
   cursor: pointer;
   margin-top: 10px;
+}
+
+.result_btn.disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+  border: 1px solid #ccc;
 }
 
 /* 1. 전체 박스의 머리 라인을 맞춥니다 */
@@ -130,9 +148,10 @@
 .nonTaxable input {
   height: 40px;
   border-radius: 10px;
-  border: 1px solid #bebebe;
+  border: 1px solid #d1d5db;
   padding-left: 10px;
   box-sizing: border-box;
+  color: #222;
 }
 
 .responsibility_family p,
@@ -140,13 +159,14 @@
   font-weight: 400;
   font-size: 14px;
   margin-bottom: 4px;
+  color: #222;
 }
 
 .responsibility_family button,
 .children button {
   width: 40px;
   height: 40px;
-  border: 1px solid #bebebe;
+  border: 1px solid #d1d5db;
   background-color: #f4f6f1;
   border-radius: 6px;
   cursor: pointer;
@@ -168,10 +188,12 @@
 .responsibility_family span,
 .children span {
   padding: 18px;
+  color: #222;
 }
 
 .insurance_result {
-  width: 1000px;
+  width: 100%;
+  max-width: 900px;
   margin: 0 auto;
   margin-top: 20px;
   border: 1px solid #6a784d;
@@ -222,7 +244,8 @@
 }
 
 .result_card {
-  width: 1000px;
+  width: 100%;
+  max-width: 900px;
   margin: 0 auto;
   border: 1px solid #d9d9d9;
   background-color: #fff;
@@ -232,19 +255,20 @@
 }
 
 .result_header {
-  width: 1000px;
+  width: 100%;
+  max-width: 900px;
   display: flex;
 }
 
 .result_header .header_inner {
   width: 100%;
-  padding: 10px 40px;
+  padding: 10px 30px;
   display: flex;
   background-color: #6a784d;
 }
 
 .result_header span {
-  width: 86%;
+  width: 80%;
   margin: 0;
   color: #fff;
   font-size: 16px;
@@ -252,7 +276,7 @@
 }
 
 .result_header button {
-  width: 14%;
+  width: 20%;
   height: 36px;
   margin: 0;
   background-color: #6a784d;
@@ -281,12 +305,12 @@ table {
 
 .table_wide th:first-child,
 .table_wide td:first-child {
-  width: 52%; /* 항목 너비 */
+  width: 40%; /* 항목 너비 */
 }
 
 thead th,
 tbody td {
-  padding: 12px 40px;
+  padding: 12px 34px;
   text-align: left;
 }
 
@@ -311,7 +335,7 @@ tfoot td {
 }
 
 tfoot td {
-  padding: 20px 40px;
+  padding: 20px 34px;
   text-align: left;
   font-weight: 600;
 }
@@ -321,7 +345,8 @@ tfoot td:last-child {
 }
 
 .insurance_notice {
-  width: 1000px;
+  width: 100%;
+  max-width: 900px;
   margin: 10px auto;
   background-color: #f4f6f1;
   border: 1px solid #d9d9d9;
@@ -338,16 +363,158 @@ tfoot td:last-child {
 .insurance_notice_inner p {
   margin: 0;
   font-size: 14px;
-  color: #444;
+  color: #666;
 }
 
 .insurance_notice_inner span {
-  color: #222;
+  color: #444;
   font-weight: 500;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1024px) {
+}
+
+/* 3. 모바일 (767px 이하): 숨기기 */
+@media (max-width: 767px) {
   .hide_mobile {
     display: none;
+  }
+
+  .input_select {
+    display: none;
+  }
+
+  .result_header button {
+    display: none;
+  }
+
+  .insurance_title {
+    margin: 30px;
+  }
+
+  .insurance_title p {
+    line-height: 1.4;
+  }
+
+  .insurance_input_box_inner {
+    padding: 30px 20px;
+    display: flex;
+    gap: 6px;
+  }
+
+  .Checklist {
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    gap: 10px;
+  }
+
+  .nonTaxable {
+    width: 100%;
+    order: 1;
+  }
+
+  .responsibility_family {
+    width: calc(50% - 10px);
+    order: 2;
+  }
+
+  .children {
+    width: calc(50% - 10px);
+    order: 3;
+  }
+
+  .responsibility_family p,
+  .children p {
+    font-size: 13px;
+  }
+
+  .responsibility_family span,
+  .children span {
+    min-width: 18px;
+    text-align: center;
+  }
+
+  .error {
+    font-size: 10px;
+  }
+
+  .non {
+    font-size: 12px;
+  }
+
+  .insurance_result_inner {
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .insurance_result_inner p {
+    font-size: 12px;
+  }
+
+  .insurance_result_inner h1 {
+    font-size: 26px;
+  }
+
+  .insurance_result span {
+    font-size: 10px;
+  }
+
+  .table_narrow th:first-child,
+  .table_narrow td:first-child {
+    width: 60%;
+  }
+
+  .result_header .header_inner {
+    padding: 8px 20px;
+  }
+
+  thead th {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  tbody td {
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+
+  .tbody_rate {
+    font-size: 11px;
+  }
+
+  tfoot tr td {
+    padding: 20px;
+    font-size: 14px;
+  }
+
+  .netsalary_summation p {
+    padding: 16px 20px;
+  }
+
+  .summation_Before {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .summation_total {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .summation_netsalary {
+    padding: 20px;
+    font-size: 14px;
+  }
+
+  .insurance_notice_inner {
+    padding: 20px;
+    line-height: 1.4;
+  }
+
+  .insurance_notice_inner p {
+    font-size: 12px;
   }
 }

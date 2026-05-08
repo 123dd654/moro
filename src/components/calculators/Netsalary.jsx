@@ -362,7 +362,7 @@ const Netsalary = () => {
           </button>
         </div>
       </div>
-      <div className="netsalary_result">
+      <div className={`netsalary_result ${!result ? "hide_mobile" : ""}`}>
         <div className="netsalary_result_inner">
           <p>필요한 세전 급여(월)</p>
           <h1>{result?.gross?.toLocaleString() || 0}원</h1>
@@ -372,7 +372,7 @@ const Netsalary = () => {
           </span>
         </div>
       </div>
-      <div className="netsalary_deduction">
+      <div className={`netsalary_deduction ${!result ? "hide_mobile" : ""}`}>
         <div className="deduction_title">
           <ReceiptText className="receipt_icon" />
           <span>공제 내역</span>
@@ -395,7 +395,7 @@ const Netsalary = () => {
           </div>
         </div>
       </div>
-      <div className="netsalary_summation">
+      <div className={`netsalary_summation ${!result ? "hide_mobile" : ""}`}>
         <p>계산 요약</p>
         <div>
           <div className="summation_Before">
@@ -418,7 +418,9 @@ const Netsalary = () => {
           </span>
         </div>
       </div>
-      <div className="netsalary_result_notice">
+      <div
+        className={`netsalary_result_notice ${!result ? "hide_mobile" : ""}`}
+      >
         <div className="notice_inner">
           <p>
             <CircleAlert className="check_point_icon" />본 계산기는 2026년
