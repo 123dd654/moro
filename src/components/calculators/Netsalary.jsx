@@ -15,6 +15,7 @@ const Netsalary = () => {
   const [nonTaxable, setNonTaxable] = useState(200000);
   const [TaxableError, setTaxableError] = useState("");
   const [nonTaxableError, setNonTaxableError] = useState("");
+  const [touched, setTouched] = useState(false);
 
   const increaseFamily = (value) => {
     if (family + value > 11) return;
@@ -202,6 +203,12 @@ const Netsalary = () => {
     },
   ];
 
+  const isInvalid =
+    !touched ||
+    !targetNet ||
+    Number(targetNet) <= 0 ||
+    Number(nonTaxable) > Number(targetNet);
+
   return (
     <div className="netsalary">
       <div className="netsalary_title">
@@ -220,12 +227,25 @@ const Netsalary = () => {
                 const value = e.target.value;
                 const numValue = Number(value);
 
+                if (value === "") {
+                  setTargetNet("");
+                  setTaxableError("");
+                  return;
+                }
+
                 if (numValue < 0) {
                   setTaxableError("0원 이상 입력해주세요.");
                   return;
                 }
 
-                setTaxableError("");
+                const nonTax = Number(nonTaxable || 0);
+                if (nonTax > 0 && nonTax > numValue) {
+                  setTaxableError("입력한 실수령액보다 비과세 금액이 큽니다.");
+                } else {
+                  setTaxableError("");
+                }
+
+                setTouched(true);
                 setTargetNet(value);
               }}
             />
@@ -261,7 +281,7 @@ const Netsalary = () => {
                   }
 
                   if (numValue > 200000) {
-                    setNonTaxableError("20만원 미만으로 입력해주세요.");
+                    setNonTaxableError("20만원 이하로 입력해주세요.");
                     return;
                   }
                   setNonTaxableError("");
@@ -353,12 +373,17 @@ const Netsalary = () => {
             </span>
           </div>
           <button
-            className="calculate_btn"
+            className={`result_btn ${isInvalid ? "disabled" : ""}`}
             onClick={() =>
               findGross(Number(targetNet), family, children, Number(nonTaxable))
             }
+            disabled={isInvalid}
           >
-            계산하기
+            {!touched
+              ? "금액을 입력해주세요"
+              : isInvalid
+                ? "입력값을 확인해주세요"
+                : "계산하기"}
           </button>
         </div>
       </div>

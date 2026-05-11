@@ -6,8 +6,12 @@
 }
 
 .weeklypay_title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
   text-align: center;
-  margin: 50px;
 }
 
 .weeklypay_title h2 {
@@ -18,7 +22,7 @@
 
 .weeklypay_title p {
   color: #888;
-  font-size: clamp(11px, 2vw, 16px);
+  font-size: clamp(12px, 2vw, 16px);
   margin-top: 0;
 }
 
@@ -241,7 +245,17 @@
 
 @media (max-width: 767px) {
   .weeklypay_title {
-    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    text-align: center;
+    padding: 0 50px;
+  }
+
+  .weeklypay_title p {
+    line-height: 1.4;
   }
 
   .time_day {

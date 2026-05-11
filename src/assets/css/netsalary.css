@@ -5,8 +5,12 @@
 }
 
 .netsalary_title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
   text-align: center;
-  margin: 50px;
 }
 
 .netsalary_title h2 {
@@ -391,7 +395,17 @@
   }
 
   .netsalary_title {
-    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    text-align: center;
+    padding: 0 50px;
+  }
+
+  .netsalary_title p {
+    line-height: 1.4;
   }
 
   .input_box_inner {
